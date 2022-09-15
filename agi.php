@@ -788,7 +788,7 @@ class AGI {
 		$str = trim(substr($str, 3));
 
 		// we have a multiline response!
-		if($str{0} == '-') {
+		if($str[0] == '-') {
 			$count = 0;
 			$str = substr($str, 1) . "\n";
 
@@ -818,14 +818,14 @@ class AGI {
 				// we previously hit a token starting with '(' but not ending in ')'
 				if($in_token) {
 					$tmp = trim($token);
-					$tmp = $tmp{0} == '(' ? substr($tmp,1):$tmp;
+					$tmp = $tmp[0] == '(' ? substr($tmp,1):$tmp;
 					$tmp = substr($tmp,-1) == ')' ? substr($tmp,0,strlen($tmp)-1):$tmp;
 					$ret['data'] .= ' ' . trim($tmp);
-					if($token{strlen($token)-1} == ')') {
+					if($token[strlen($token)-1] == ')') {
 						$in_token = false;
 					}
-				} elseif($token{0} == '(') {
-					if($token{strlen($token)-1} != ')') {
+				} elseif($token[0] == '(') {
+					if($token[strlen($token)-1] != ')') {
 						$in_token = true;
 					}
 					$tmp = trim(substr($token,1));
